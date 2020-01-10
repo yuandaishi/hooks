@@ -14,13 +14,14 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
+    console.log('xxxx');
     fetch(MOVIE_API_URL)
-      .then(response => response.json())
+      .then(response => response.json())//then返回的参数作为下一个then的值
       .then(jsonResponse => {
         setMovies(jsonResponse.Search);
         setLoading(false);
       });
-  }, []);
+  }, []);//如果这里是空，就只会在componentDiMonunt生命周期执行，如果传入一个值，那么这个值改变的时候，就会执行，比如这里传入movies，会一直执行下去
 
     const search = searchValue => {
     setLoading(true);
